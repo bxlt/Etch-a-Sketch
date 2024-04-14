@@ -1,21 +1,29 @@
 const grid = document.querySelector('#container');
 const drawBtn = document.querySelector('#generate');
 const GRIDMAX = 100;
-//create 16x16 grid by loop
+const GRIDSIZE = 500;
+let CURRSIZE = 16;
 
-function drawGrid(row,col){
+function drawGrid(row,col,randomColor=false,){
+    let currW = GRIDSIZE/row +'px';
+    CURRSIZE = row;
     for (let i =0;i<row;i++){
         let currRow = document.createElement('div');
         currRow.classList.add('row')
         for(let j=0;j<col;j++){
             let currCol = document.createElement('div');
             currCol.classList.add('col');
+            currCol.style.width = currW;
+            currCol.style.height = currW;
             currRow.append(currCol);
     
             //add hover eventlistener
             currCol.addEventListener('mouseover',(e)=>{
                 //console.log(e);
-                currCol.style.backgroundColor = 'orange'
+                currCol.style.backgroundColor = 'orange';
+                if(randomColor){
+                    currCol.style.backgroundColor =getRandomColor();
+                }
             });
         }
         grid.append(currRow);
@@ -34,20 +42,37 @@ function checkNum(num){
     return res;
 }
 
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  function changeColor(){
+    drawGrid(CURRSIZE,CURRSIZE,true);
+  }
+
+
 drawBtn.addEventListener('click', ()=>{
     let newWidth = Number(prompt("enter new Width"));
-    let newHeight = Number(prompt('enter new height'));
+   
 
-    if(checkNum(newWidth)&&checkNum(newHeight)){
+    if(checkNum(newWidth)){
         emptyGrid();
-        drawGrid(newHeight,newWidth);
+        drawGrid(newWidth,newWidth);
     }else{
         alert("Grid width and height range is from 1 to 100");
     }
 })
 
 
-drawGrid(16,16);
 
 
+//create 16x16 grid by loop
+//drawGrid(CURRSIZE,CURRSIZE);
+
+changeColor()
 

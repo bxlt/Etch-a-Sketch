@@ -1,4 +1,12 @@
 
+#container{
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
 
 .row .col{
     border: 1px solid black;
@@ -7,9 +15,9 @@
 .row{
     display: flex;
     flex-direction: row;
+
 }
 
 .col{
-    width: 30px;
-    height: 30px;
+   
 }
