@@ -52,6 +52,7 @@ function getRandomColor() {
   }
 
   function changeColor(){
+    emptyGrid();
     drawGrid(CURRSIZE,CURRSIZE,true);
   }
 
@@ -68,11 +69,12 @@ drawBtn.addEventListener('click', ()=>{
     }
 })
 
-
+//add change grid color by click
+const colorBtn = document.querySelector('#color');
+colorBtn.addEventListener('click',changeColor);
 
 
 //create 16x16 grid by loop
-//drawGrid(CURRSIZE,CURRSIZE);
+drawGrid(CURRSIZE,CURRSIZE);
 
-changeColor()
 
